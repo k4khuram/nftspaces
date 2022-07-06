@@ -1,0 +1,17 @@
+@import url(https://fonts.googleapis.com/css2?family=Monda&family=Montserrat:wght@400;700&family=Play:wght@400;700&family=Raleway:wght@700&family=Roboto:wght@400;700&display=swap);
+@font-face {
+  font-family: "minecraftia";
+  src: url(../fonts/Minecraftia.eot?73ad4971271efa09abbc65e7889ed96a);
+  src: url(../fonts/Minecraftia.eot?73ad4971271efa09abbc65e7889ed96a?#iefix) format("embedded-opentype"), url(../fonts/Minecraftia.woff2?746c4dd28321a75f12e486adbbfe9c75) format("woff2"), url(../fonts/Minecraftia.woff?05bd611d9704211c48d8009f0b039113) format("woff"), url(../fonts/Minecraftia.ttf?a8a290782575b1b578c3fa1545636019) format("truetype"), url(../fonts/Minecraftia.svg?3b505669ec142c41746cc84de061450f#Minecraftia) format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "broken_console";
+  src: url(../fonts/BrokenConsole-Regular.eot?7444258d0f77d905fb2d78b00afb3c03);
+  src: url(../fonts/BrokenConsole-Regular.eot?7444258d0f77d905fb2d78b00afb3c03?#iefix) format("embedded-opentype"), url(../fonts/BrokenConsole-Regular.woff2?cac2a6914b773e3e2545a01622f1ad52) format("woff2"), url(../fonts/BrokenConsole-Regular.woff?8c86754d1f3ac40cecf3eed5b6c0a5d5) format("woff"), url(../fonts/BrokenConsole-Regular.ttf?ae84b1a1ade2bff5ff3afa1ee0de69cf) format("truetype"), url(../fonts/BrokenConsole-Regular.svg?899e748e81cb3781e5b93a5600022402#BrokenConsole-Regular) format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
