@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Header from "./header.componenet";
+import {Header} from "./Header";
 import LiveNow from "./live.component";
 import Hot from "./hot.component";
 import Upcoming from "./upcoming.component";
 import Past from "./past.component";
-import Popular from "./popular.component";
+import Popular from "./Popular";
 import Footer from "./footer.component";
 export default class Home extends Component {
     constructor(props) {
@@ -75,7 +75,7 @@ export default class Home extends Component {
                                                 <p className="d-flex align-items-center"><img src="images/success-icon.svg"
                                                                                               alt="Success Icon"/> Have you
                                                     visited <b className="alert-link">#Quirksville</b> yet, anon?</p>
-                                                <a href="#" className="alert-link">Get Quirky ></a>
+                                                <a href="#" className="alert-link">Get Quirky </a>
                                             </div>
 
                                             <div className="row g-3 mt-2">
