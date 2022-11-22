@@ -63,7 +63,7 @@ export const userLogin = createAsyncThunk(
   }
 )
 
-const userInfo  = localStorage.getItem('user')?localStorage.getItem('user'):null;
+const userInfo  = JSON.parse (localStorage.getItem('user')?localStorage.getItem('user'):null);
 
 const initialState = {
   userInfo, // for user object

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import {Header} from "./Header";
-import LiveNow from "./live.component";
-import Hot from "./hot.component";
-import Upcoming from "./upcoming.component";
-import Past from "./past.component";
+import LiveNow from "./Live";
+import Hot from "./Hot";
+import Upcoming from "./Upcoming";
+import Past from "./Past";
 import Popular from "./Popular";
-import Footer from "./footer.component";
+import Footer from "./Footer";
 export default class Home extends Component {
     constructor(props) {
         super(props);
@@ -43,7 +43,7 @@ export default class Home extends Component {
                                                 </div>
                                             </div>
                                             <div className="wave-image">
-                                                <img src="images/wave-image.png" alt="Wave Image" />
+                                                <img src="/images/wave-image.png" alt="Wave Image" />
                                             </div>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@ export default class Home extends Component {
                                             <div
                                                 className="alert alert-success d-flex align-items-center justify-content-between mt-3"
                                                 role="alert">
-                                                <p className="d-flex align-items-center"><img src="images/success-icon.svg"
+                                                <p className="d-flex align-items-center"><img src="/images/success-icon.svg"
                                                                                               alt="Success Icon"/> Have you
                                                     visited <b className="alert-link">#Quirksville</b> yet, anon?</p>
                                                 <a href="#" className="alert-link">Get Quirky </a>

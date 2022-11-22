@@ -1,7 +1,8 @@
 import Logo from "./logo";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ActionMenue } from "./ActionMenu";
+import { SearchSpaces } from "./SearchSpaces";
 
 export const Header = props =>{
 
@@ -16,17 +17,8 @@ export const Header = props =>{
                             </a>
                         </div>
                         <div className="col-lg-6 col-md-12 d-none-md">
-                            <div className="search-main">
-                                <form action="" method="POST">
-                                    <input type="text" className="form-control" name="search" id="search"
-                                           placeholder="Search for NFT related Twitter Spaces">
-                                    </input>
-                                    <button type="submit" className="btn btn-search">
-
-                                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                                        </button>
-                                </form>
-                            </div>
+                            
+                            <SearchSpaces></SearchSpaces>
                         </div>
 
                         <div className="col-lg-3 col-md-7 col-sm-7 col-7">

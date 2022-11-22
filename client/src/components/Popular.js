@@ -8,7 +8,7 @@ const Popular = ()=>  {
                 <div className="card mb-3">
                     <div className="row align-items-center g-0">
                         <div className="col-3">
-                            <img src="images/panda-image.png" className="img-fluid"
+                            <img src="/images/panda-image.png" className="img-fluid"
                                  alt="Card Icon"/>
                         </div>
                         <div className="col-9">
@@ -35,7 +35,7 @@ const Popular = ()=>  {
                 <div className="card mb-3">
                     <div className="row align-items-center g-0">
                         <div className="col-3">
-                            <img src="images/monkey-image.png" className="img-fluid"
+                            <img src="/images/monkey-image.png" className="img-fluid"
                                  alt="Card Icon"/>
                         </div>
                         <div className="col-9">
@@ -62,7 +62,7 @@ const Popular = ()=>  {
                 <div className="card mb-3">
                     <div className="row align-items-center g-0">
                         <div className="col-3">
-                            <img src="images/monkey-image.png" className="img-fluid"
+                            <img src="/images/monkey-image.png" className="img-fluid"
                                  alt="Card Icon"/>
                         </div>
                         <div className="col-9">
@@ -89,7 +89,7 @@ const Popular = ()=>  {
                 <div className="card mb-3">
                     <div className="row align-items-center g-0">
                         <div className="col-3">
-                            <img src="images/monkey-image.png" className="img-fluid"
+                            <img src="/images/monkey-image.png" className="img-fluid"
                                  alt="Card Icon"/>
                         </div>
                         <div className="col-9">

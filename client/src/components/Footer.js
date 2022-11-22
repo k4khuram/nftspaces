@@ -9,7 +9,7 @@ class Footer extends React.Component{
             <footer>
                 <div className="footer-box text-center">
                     <div className="logo">
-                        <a href="#"><img src="images/logo.png" alt="NFTSpaces"/></a>
+                        <a href="#"><img src="/images/logo.png" alt="NFTSpaces"/></a>
                     </div>
                     <p>Copyright NFTSpaces 2022 - All RIghts Reserved</p>
                 </div>

@@ -10,12 +10,12 @@ class Live extends Component{
         return(
             <div className="col-lg-4">
                 <div className="left-area-mian">
-                    <h2 className="heading-h2"><img src="images/green-dot.png" alt="Green Dot"/>Live now</h2>
+                    <h2 className="heading-h2"><img src="/images/green-dot.png" alt="Green Dot"/>Live now</h2>
                     <div className="group-scroll">
                         <div className="group-main">
                             <div className="live-main">
                                 <div className="d-flex align-items-center live-icon-main">
-                                    <img src="images/live-icon.png" alt="Live"/>
+                                    <img src="/images/live-icon.png" alt="Live"/>
                                     <p>LIVE</p>
                                 </div>
                                 <div className="menu-icon">
@@ -26,13 +26,13 @@ class Live extends Component{
                             <div className="profiles-main">
                                 <div className="profiles-sub">
                                     <div className="profiles">
-                                        <img src="images/profile-image-1.png" alt="Profile Image"/>
+                                        <img src="/images/profile-image-1.png" alt="Profile Image"/>
                                     </div>
                                     <div className="profiles">
-                                        <img src="images/profile-image-2.png" alt="Profile Image"/>
+                                        <img src="/images/profile-image-2.png" alt="Profile Image"/>
                                     </div>
                                     <div className="profiles">
-                                        <img src="images/profile-image-1.png" alt="Profile Image"/>
+                                        <img src="/images/profile-image-1.png" alt="Profile Image"/>
                                     </div>
                                 </div>
                                 <p>5,s + 58 listening</p>
@@ -40,11 +40,11 @@ class Live extends Component{
                             <div className="footer-main">
                                 <div className="footer-profiles">
                                     <div className="footer-profiles-main">
-                                        <img src="images/sub-profile-1.png" alt="Profile Image"/>
+                                        <img src="/images/sub-profile-1.png" alt="Profile Image"/>
                                         <p>Head Hippie.eth</p>
                                     </div>
                                     <div className="footer-profiles-main">
-                                        <img src="images/check-image.png" alt="Profile Image"/>
+                                        <img src="/images/check-image.png" alt="Profile Image"/>
                                         <p className="profile-card">Speaker</p>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@ class Live extends Component{
                         <div className="group-main group-main-color-1">
                             <div className="live-main">
                                 <div className="d-flex align-items-center live-icon-main">
-                                    <img src="images/live-icon.png" alt="Live"/>
+                                    <img src="/images/live-icon.png" alt="Live"/>
                                     <p>LIVE</p>
                                 </div>
                                 <div className="menu-icon">
@@ -66,13 +66,13 @@ class Live extends Component{
                             <div className="profiles-main">
                                 <div className="profiles-sub">
                                     <div className="profiles">
-                                        <img src="images/profile-image-1.png" alt="Profile Image"/>
+                                        <img src="/images/profile-image-1.png" alt="Profile Image"/>
                                     </div>
                                     <div className="profiles">
-                                        <img src="images/profile-image-2.png" alt="Profile Image"/>
+                                        <img src="/images/profile-image-2.png" alt="Profile Image"/>
                                     </div>
                                     <div className="profiles">
-                                        <img src="images/profile-image-1.png" alt="Profile Image"/>
+                                        <img src="/images/profile-image-1.png" alt="Profile Image"/>
                                     </div>
                                 </div>
                                 <p>Cornitopia + 33 listening</p>
@@ -80,11 +80,11 @@ class Live extends Component{
                             <div className="footer-main">
                                 <div className="footer-profiles">
                                     <div className="footer-profiles-main">
-                                        <img src="images/sub-profile-1.png" alt="Profile Image"/>
+                                        <img src="/images/sub-profile-1.png" alt="Profile Image"/>
                                         <p>BizzyNFT</p>
                                     </div>
                                     <div className="footer-profiles-main">
-                                        <img src="images/check-image.png" alt="Profile Image"/>
+                                        <img src="/images/check-image.png" alt="Profile Image"/>
                                         <p className="profile-card">Host</p>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@ class Live extends Component{
                         <div className="group-main group-main-color-2">
                             <div className="live-main">
                                 <div className="d-flex align-items-center live-icon-main">
-                                    <img src="images/live-icon.png" alt="Live"/>
+                                    <img src="/images/live-icon.png" alt="Live"/>
                                     <p>LIVE</p>
                                 </div>
                                 <div className="menu-icon">
@@ -107,13 +107,13 @@ class Live extends Component{
                             <div className="profiles-main">
                                 <div className="profiles-sub">
                                     <div className="profiles">
-                                        <img src="images/profile-image-1.png" alt="Profile Image"/>
+                                        <img src="/images/profile-image-1.png" alt="Profile Image"/>
                                     </div>
                                     <div className="profiles">
-                                        <img src="images/profile-image-2.png" alt="Profile Image"/>
+                                        <img src="/images/profile-image-2.png" alt="Profile Image"/>
                                     </div>
                                     <div className="profiles">
-                                        <img src="images/profile-image-1.png" alt="Profile Image"/>
+                                        <img src="/images/profile-image-1.png" alt="Profile Image"/>
                                     </div>
                                 </div>
                                 <p>Ryan Malaty + 89 listening</p>
@@ -121,11 +121,11 @@ class Live extends Component{
                             <div className="footer-main">
                                 <div className="footer-profiles">
                                     <div className="footer-profiles-main">
-                                        <img src="images/sub-profile-1.png" alt="Profile Image"/>
+                                        <img src="/images/sub-profile-1.png" alt="Profile Image"/>
                                         <p>Leonidas.eth</p>
                                     </div>
                                     <div className="footer-profiles-main">
-                                        <img src="images/hea-image.png" alt="Profile Image"/>
+                                        <img src="/images/hea-image.png" alt="Profile Image"/>
                                         <p className="profile-card">Speaker</p>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@ class Live extends Component{
                         <div className="group-main group-main-color-3">
                             <div className="live-main">
                                 <div className="d-flex align-items-center live-icon-main">
-                                    <img src="images/live-icon.png" alt="Live"/>
+                                    <img src="/images/live-icon.png" alt="Live"/>
                                     <p>LIVE</p>
                                 </div>
                                 <div className="menu-icon">
@@ -147,13 +147,13 @@ class Live extends Component{
                             <div className="profiles-main">
                                 <div className="profiles-sub">
                                     <div className="profiles">
-                                        <img src="images/profile-image-1.png" alt="Profile Image"/>
+                                        <img src="/images/profile-image-1.png" alt="Profile Image"/>
                                     </div>
                                     <div className="profiles">
-                                        <img src="images/profile-image-2.png" alt="Profile Image"/>
+                                        <img src="/images/profile-image-2.png" alt="Profile Image"/>
                                     </div>
                                     <div className="profiles">
-                                        <img src="images/profile-image-1.png" alt="Profile Image"/>
+                                        <img src="/images/profile-image-1.png" alt="Profile Image"/>
                                     </div>
                                 </div>
                                 <p>Azura | ASG + 260 listening</p>
@@ -161,11 +161,11 @@ class Live extends Component{
                             <div className="footer-main">
                                 <div className="footer-profiles">
                                     <div className="footer-profiles-main">
-                                        <img src="images/sub-profile-1.png" alt="Profile Image"/>
+                                        <img src="/images/sub-profile-1.png" alt="Profile Image"/>
                                         <p>CryptoBatz</p>
                                     </div>
                                     <div className="footer-profiles-main">
-                                        <img src="images/check-image.png" alt="Profile Image"/>
+                                        <img src="/images/check-image.png" alt="Profile Image"/>
                                         <p className="profile-card">Host</p>
                                     </div>
                                 </div>
