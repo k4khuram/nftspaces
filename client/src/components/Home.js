@@ -6,9 +6,34 @@ import Upcoming from "./Upcoming";
 import Past from "./Past";
 import Popular from "./Popular";
 import Footer from "./Footer";
+import { marketCapsVolumes } from "../apis/graphAPI";
+
 export default class Home extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+
+        const resp = marketCapsVolumes().then((result) => {
+            console.log(result);
+        })
+
+
+        // alert(resp);
+
+        // const options = {
+        //     method: 'GET',
+        //     headers: {
+        //         accept: 'application/json',
+        //         'X-API-KEY': 'b649f473-6886-4668-97fb-15a8ec49ee97'
+        //     }
+        // };
+        
+        // fetch('https://data-api.nftgo.io/eth/v1/market/chart/marketcap?start_time=2022-11-08T00%3A00%3A00%2B00%3A00&end_time=2022-11-09T00%3A00%3A00%2B00%3A00', options)
+        // .then(response => response.json())
+        // .then(response => console.log(response))
+        // .catch(err => console.error(err));
     }
 
     render() {
