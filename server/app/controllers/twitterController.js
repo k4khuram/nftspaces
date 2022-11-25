@@ -29,7 +29,7 @@ exports.callback = async(req,res) =>{
 
   try{
     const { codeVerifier, code } = req.body;  
-    res.send(codeVerifier);
+    
     const client = new TwitterApi({ clientId: TWITTER_CLIENT_ID, 
       clientSecret: TWITTER_CLIENT_SECRET });
   
