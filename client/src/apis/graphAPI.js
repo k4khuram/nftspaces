@@ -23,11 +23,8 @@ export const marketCapsVolumes = async(query,state) => {
 
         return result;
       } catch (error) {
-        // return custom error message from API if any
         if (error) {
-            //return error.response.data.message
         } else {
-           // return error.message
         }
       }
 }
