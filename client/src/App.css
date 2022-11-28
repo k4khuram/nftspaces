@@ -65,3 +65,15 @@ label {
     font-weight: 600;
     color: rgb(34, 34, 34);
   }
+
+  .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+    background-color: #062361 !important;
+    font-weight: bold !important;
+  }
+  .apexcharts-tooltip.apexcharts-theme-light {
+    background-color: #062361 !important;
+  }
+  .label-white{
+    fill: white !important;
+  }
+  

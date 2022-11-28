@@ -19,12 +19,23 @@ class ApexChart extends React.Component {
                     toolbar: {
                         show: false
                     },
-                    sparkline: {
-                        enabled: true,
-                    }
+                },
+                stroke: {
+                    curve: 'smooth',
+                    width: [1, 1],
+                    colors: ['#7655e0', '#9a42a1']
+                },
+                markers: {
+                    size: 0,
+                    colors: ['#7655e0', '#c940c9'],
+                    strokeWidth: 1,
+                    strokeOpacity: 0.9,
+                    fillOpacity: 1,
+                    shape: "circle",
+                    radius: 2,
                 },
                 fill: {
-                    colors: ['#1A73E8', '#B32824'],
+                    colors: ['#1A73E8', '#c940c9'],
                 },
                 legend: {
                     show: false,
@@ -32,36 +43,40 @@ class ApexChart extends React.Component {
                 dataLabels: {
                     enabled: false
                 },
-                stroke: {
-                    curve: 'smooth'
-                },
                 xaxis: {
                     type: 'datetime',
                     categories: this.props.categories,
                     labels: {
-                        show: false,
-                        formatter: function (value) {
-                            var d = new Date(value).toUTCString();
-                            return d.replace('GMT','UTC');
-                        }
-                    }
+                        show: true,
+                        style: {
+                            cssClass: ['label-white']
+                        },
+                        format: 'HH:mm'
+                    },
                 },
                 yaxis: {
                     labels: {
                         show: false,
                         formatter: function (value) {
                             return "$"+new Intl.NumberFormat('en-IN').format(value);
-                        }                      
-                    }
+                        },
+                    },
                 },
-                // tooltip: {
-                //     x: {
-                //         format: 'MMM dd, yyyy, HH:mm',
-                //     }
-                // },
-            },
-
-
+                tooltip: {
+                    enabled: true,
+                    x: {
+                        show: true,
+                        formatter: function (value) {
+                            var d = new Date(value).toUTCString();
+                            return d.replace('GMT','UTC');
+                        }
+                    },
+                    marker: {
+                        show: true,
+                        fillColors: ['#7655e0', '#c940c9'],
+                    },
+                },
+            }
         };
     }
 
@@ -75,7 +90,7 @@ class ApexChart extends React.Component {
                     series={this.state.series}
                     type="area"
                     width="500"
-                    height="100"
+                    height="200"
                 />
             </div>
         );
