@@ -1,6 +1,7 @@
 const express = require('express');
 let twitter_controller = require('../controllers/twitterController')
 let user_controller = require('../controllers/userController')
+let graph_controller = require('../controllers/graphController')
 const auth = require('../middlewares/auth');
 const { TwitterApi } = require('twitter-api-v2');
 
@@ -25,5 +26,6 @@ module.exports = app =>{
     app.post('/api/v1/signup',  user_controller.signup);
     app.post('/api/v1/signin',  user_controller.signin);
     app.get('/api/v1/twitter/getspaces', twitter_controller.getSpaces)
+    app.get('/api/v1/graph/market/caps/volumes', graph_controller.getMarketCapsVolumes)
     
 }

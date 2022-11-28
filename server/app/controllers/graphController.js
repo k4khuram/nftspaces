@@ -1,6 +1,5 @@
 const axios = require("axios");
 const apiHelper = require('../helpers/apiHelper');
-const dataHelper = require('../helpers/dataHelper');
 
 const WEB_URL = process.env.NFTGO_URL;
 const API_KEY = process.env.NFTGO_API_KEY;
