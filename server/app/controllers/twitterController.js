@@ -19,7 +19,7 @@ exports.getAuthURL = async(req,res) => {
 
     const client = new TwitterApi({ clientId: TWITTER_CLIENT_ID, 
     clientSecret: TWITTER_CLIENT_SECRET });
-    const { url, codeVerifier, state } = client.generateOAuth2AuthLink(WEB_URL+TWITTER_CALLBACK_URL, { scope: ['tweet.read', 'users.read','space.read'] });
+    const { url, codeVerifier, state } = client.generateOAuth2AuthLink(WEB_URL+TWITTER_CALLBACK_URL, { scope: ['tweet.read','offline.access', 'users.read','space.read'] });
     res.status(200).json(apiHelper.getSuccessResponse({url:url,codeVerifier:codeVerifier,state:state},""))
     
     
