@@ -15,7 +15,7 @@ export const ActionMenue = () =>{
     
     const getAuthUrl = async () => {
         const { data } = await axios.get(CONFIG.API_URL+'/auth/twitter/getauthurl');
-        console.log(data.data);
+        //alert(data.data.codeVerifier);
         localStorage.setItem('codeVerifier',data.data.codeVerifier);
         window.location.replace(data.data.url);
       };
