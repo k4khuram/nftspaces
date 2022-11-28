@@ -7,16 +7,28 @@ import Past from "./Past";
 import Popular from "./Popular";
 import Footer from "./Footer";
 import { marketCapsVolumes } from "../apis/graphAPI";
+import ApexChart from './ApexChart';
 
 export default class Home extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isChart: false,
+            capsTotal: '0',
+            volumesTotal: '0',
+            caps: [],
+            volumes: [],
+            categories: [],
+        }
+        this.convertCurrency = this.convertCurrency.bind(this);
     }
 
     componentDidMount() {
 
         const resp = marketCapsVolumes().then((result) => {
             console.log(result);
+            result = result.data;
+            this.setState({capsTotal: this.convertCurrency(result.caps_total), volumesTotal: this.convertCurrency(result.volumes_total), caps: result.caps, volumes: result.volumes, categories: result.date_time, isChart: true});
         })
 
 
@@ -34,6 +46,24 @@ export default class Home extends Component {
         // .then(response => response.json())
         // .then(response => console.log(response))
         // .catch(err => console.error(err));
+    }
+
+    convertCurrency(labelValue){
+
+        // Nine Zeroes for Billions
+        return Math.abs(Number(labelValue)) >= 1.0e+9
+    
+        ? Math.round(Math.abs(Number(labelValue)) / 1.0e+9 * 100) / 100 + "b"
+        // Six Zeroes for Millions 
+        : Math.round(Math.abs(Number(labelValue)) >= 1.0e+6 * 100) / 100
+    
+        ? Math.round(Math.abs(Number(labelValue)) / 1.0e+6 * 100) / 100 + "m"
+        // Three Zeroes for Thousands
+        : Math.round(Math.abs(Number(labelValue)) >= 1.0e+3 * 100) / 100
+    
+        ? Math.round(Math.abs(Number(labelValue)) / 1.0e+3 * 100) / 100 + "k"
+    
+        : Math.round(Math.abs(Number(labelValue)) * 100) / 100;
     }
 
     render() {
@@ -56,19 +86,22 @@ export default class Home extends Component {
                                             <div className="row">
                                                 <div className="col-7">
                                                     <div className="banner-sub-content">
-                                                        <h4>NFT TOTAL MARKET CAP</h4>
-                                                        <h2>$18.76b</h2>
+                                                        <h4>MARKET CAP (24h)</h4>
+                                                        <h2>${this.state.capsTotal}</h2>
                                                     </div>
                                                 </div>
                                                 <div className="col-5">
                                                     <div className="banner-sub-content text-end">
-                                                        <h4>24h VOLUME</h4>
-                                                        <h3>$146.23m</h3>
+                                                        <h4>VOLUME (24h)</h4>
+                                                        <h3>${this.state.volumesTotal}</h3>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="wave-image">
-                                                <img src="/images/wave-image.png" alt="Wave Image" />
+                                                {this.state.isChart &&
+                                                    <ApexChart volumes={this.state.volumes} caps={this.state.caps} categories={this.state.categories} />
+                                                }
+                                                {/* <img src="/images/wave-image.png" alt="Wave Image" /> */}
                                             </div>
                                         </div>
                                     </div>
