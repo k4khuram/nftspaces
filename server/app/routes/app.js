@@ -12,7 +12,6 @@ module.exports = app =>{
             "Access-Control-Allow-Headers",
             "access-token, Origin, Content-Type, Accept"
         );        
-
         next();
     });
 
