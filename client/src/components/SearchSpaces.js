@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSpaces, twitterSelector,clearState } from "../features/twitter/twitterSlice";
 
-export const SearchSpaces = () =>{
+export const SearchSpaces = () => {
 
     const dispatch = useDispatch();
     const { isLoading, isError,errMessage,isSuccess,spaces } = useSelector(twitterSelector)

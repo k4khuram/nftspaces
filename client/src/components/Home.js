@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import {Header} from "./Header";
-import LiveNow from "./Live";
+import {LiveNow} from "./Live";
 import Hot from "./Hot";
 import Upcoming from "./Upcoming";
 import Past from "./Past";
 import Popular from "./Popular";
 import Footer from "./Footer";
 import { marketCapsVolumes } from "../apis/graphAPI";
+import { getSpaces } from "../apis/twitterAPI";
 import ApexChart from './ApexChart';
 
 export default class Home extends Component {
@@ -19,6 +20,7 @@ export default class Home extends Component {
             caps: [],
             volumes: [],
             categories: [],
+            spacesList: [],
         }
         this.convertCurrency = this.convertCurrency.bind(this);
     }
@@ -30,7 +32,6 @@ export default class Home extends Component {
             result = result.data;
             this.setState({capsTotal: this.convertCurrency(result.caps_total), volumesTotal: this.convertCurrency(result.volumes_total), caps: result.caps, volumes: result.volumes, categories: result.date_time, isChart: true});
         })
-
 
         // alert(resp);
 
@@ -46,6 +47,11 @@ export default class Home extends Component {
         // .then(response => response.json())
         // .then(response => console.log(response))
         // .catch(err => console.error(err));
+
+        getSpaces('NFT', 'all').then(res => {
+            this.setState({spacesList: res.data});
+            console.log(res)
+        })
     }
 
     convertCurrency(labelValue){
@@ -114,16 +120,22 @@ export default class Home extends Component {
                             <div className="container">
                                 <div className="row">
 
-                                    <LiveNow></LiveNow>
+                                    {this.state.spacesList.live && 
+                                        <LiveNow spaces={this.state.spacesList.live} />
+                                    }
 
                                     <div className="col-lg-8 col-md-12">
                                         <div className="right-area-main">
                                             <div className="row g-3">
                                                 <div className="col-md-6">
-                                                    <Hot></Hot>
+                                                    {this.state.spacesList.trending && 
+                                                        <Hot spaces={this.state.spacesList.trending} />
+                                                    }
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <Upcoming></Upcoming>
+                                                    {this.state.spacesList.scheduled && 
+                                                        <Upcoming spaces={this.state.spacesList.scheduled}></Upcoming>
+                                                    }
                                                 </div>
                                             </div>
 

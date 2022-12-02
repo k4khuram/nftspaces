@@ -28,6 +28,7 @@
     --broken-console-font: 'broken_console';
 }
 body{
+    /* background-color: #b0b0b0; */
     background-color: var(--body-bg-color);
     color: var(--body-color);
     font-family: var(--roboto-font);
@@ -301,6 +302,7 @@ header{
     margin-left: -20px;
     padding: 20px;
     border-radius: 0 0 10px 10px;
+    overflow-wrap: break-word;
 }
 .footer-profiles {
     display: flex;
@@ -312,6 +314,9 @@ header{
 }
 .footer-profiles-main img{
     margin-right: 8px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
 }
 .footer-profiles-main p{
     color: #000;
@@ -635,4 +640,14 @@ footer{
     .card-section {
         padding: 0px 0 0px;
     }
+}
+
+.space-cards{
+    margin-top: 50px;
+    height: 550px;
+    overflow: scroll;
+}
+
+.round-img{
+    border-radius: 50%;
 }

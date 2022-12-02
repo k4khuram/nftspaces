@@ -25,7 +25,9 @@ module.exports = app =>{
     app.post('/api/v1/auth/twitter/callback', twitter_controller.callback)
     app.post('/api/v1/signup',  user_controller.signup);
     app.post('/api/v1/signin',  user_controller.signin);
+    app.get('/api/v1/twitter/savespaces', twitter_controller.saveSpaces)
     app.get('/api/v1/twitter/getspaces', twitter_controller.getSpaces)
     app.get('/api/v1/graph/market/caps/volumes', graph_controller.getMarketCapsVolumes)
+    app.post('/api/v1/twitter/space/remind', twitter_controller.remind)
     
 }
