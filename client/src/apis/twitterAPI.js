@@ -32,11 +32,11 @@ export const postTwitterCallback = async(code,codeVerifier,user) => {
        
 }
 
-export const getSpaces = async(query,state) => {
+export const getSpaces = async(query,state,userInfo) => {
   
     try {
         
-        const { data } = await axios.get(CONFIG.API_URL+'/twitter/getspaces',{params:{q:query,state:state}})
+        const { data } = await axios.get(CONFIG.API_URL+'/twitter/getspaces',{params:{q:query,state:state,user_id:userInfo.id}})
         return data;
 
       } catch (error) {

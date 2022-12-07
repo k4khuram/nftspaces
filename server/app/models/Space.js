@@ -1,6 +1,9 @@
 const mongoose =  require("mongoose");
 
 const SpaceSchema = new mongoose.Schema({
+    keyword:{
+        type: String,
+    },
     space_id:{
         type: String,
     },
@@ -16,10 +19,13 @@ const SpaceSchema = new mongoose.Schema({
         type: Number,
     },
     started_at:{
-        type: String,
+        type: Date,
+    },
+    ended_at:{
+        type: Date,
     },
     scheduled_start:{
-        type: String,
+        type: Date,
     },
     type:{
         type: String,
