@@ -79,8 +79,11 @@ exports.remind = async(req,res) => {
 
 exports.getSpaces = async(req,res) => {
   try{
+    var search = (req.query.q !== undefined && req.query.q !== '') ? { $or: [{ title: { $regex: req.query.q, $options: "i" }},{ keyword: { $regex: req.query.q, $options: "i" }},{ 'user.description': { $regex: req.query.q, $options: "i" }},{ 'user.name': { $regex: req.query.q, $options: "i" }},{ 'user.username': { $regex: req.query.q, $options: "i" }}]} : {};
     var data = {};
-    Space.aggregate([{
+    Space.aggregate([
+      {$match: search},
+      {
       "$lookup": {
         from: "space_reminders",
         let: {

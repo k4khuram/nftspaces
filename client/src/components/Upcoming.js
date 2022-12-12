@@ -7,7 +7,7 @@ const Upcoming = (props) => {
             <h2 className="heading-h2">👀 UPCOMING</h2>
             <div className="space-cards">
                 {props.spaces.map((obj, i) =>
-                    <Listing obj={obj} i={i} />
+                    <Listing obj={obj} i={i} key={i} />
                 )}
             </div>
 

@@ -9,7 +9,7 @@ const Popular = (props)=>  {
                 <h2 className="heading-h2">🚀 MOST POPULAR</h2>
                 <div className="space-cards">
                     {props.spaces.map((obj, i) =>
-                        <div className="card mb-3">
+                        <div className="card mb-3" key={i}>
                             <div className="row align-items-center g-0">
                                 <div className="col-3">
                                     <img src={obj.user ? obj.user.profile_image_url : '/images/panda-image.png'} className="img-fluid round-img" alt="Avatar" />
@@ -20,7 +20,7 @@ const Popular = (props)=>  {
                                         <div className="row align-items-center g-0">
                                             <div className="col-8">
                                                 <p className="card-text">
-                                                    <Moment format="ddd, MMM D hh:mm A">{obj.scheduled_start}</Moment>
+                                                    <Moment format="ddd, MMM D hh:mm A">{obj.started_at}</Moment>
                                                 </p>
                                                 <p className="card-text">Host: <a href="#">{obj.user ? obj.user.name : '-'}</a></p>
                                             </div>

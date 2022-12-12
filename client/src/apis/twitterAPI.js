@@ -32,22 +32,22 @@ export const postTwitterCallback = async(code,codeVerifier,user) => {
        
 }
 
-export const getSpaces = async(query,state,userInfo) => {
+// export const getSpaces = async(query,state,userInfo) => {
   
-    try {
+//     try {
         
-        const { data } = await axios.get(CONFIG.API_URL+'/twitter/getspaces',{params:{q:query,state:state,user_id:userInfo.id}})
-        return data;
+//         const { data } = await axios.get(CONFIG.API_URL+'/twitter/getspaces',{params:{q:query,state:state,user_id:userInfo.id}})
+//         return data;
 
-      } catch (error) {
-        // return custom error message from API if any
-        if (error.response && error.response.data.message) {
-            //return (error.response.data.message)
-        } else {
-           // return (error.message)
-        }
-     }
-}
+//       } catch (error) {
+//         // return custom error message from API if any
+//         if (error.response && error.response.data.message) {
+//             //return (error.response.data.message)
+//         } else {
+//            // return (error.message)
+//         }
+//      }
+// }
 
 export const spaceRemind = async(user, spaceId) => {
   

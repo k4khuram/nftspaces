@@ -3,12 +3,12 @@ import axios from "axios"
 const CONFIG = require("../../config/config");
 
 export const getSpaces = createAsyncThunk('twitter/getspaces',
-async({query,state},{ rejectWithValue }) =>{
+async({query,state,userId},{ rejectWithValue }) => {
 
     try {
         // make request to backend
-        const { data } = await axios.get(CONFIG.API_URL+'/twitter/getspaces',{params:{q:query,state:state}})
-       console.log(data);
+        const { data } = await axios.get(CONFIG.API_URL+'/twitter/getspaces',{params:{q:query,state:state,user_id:userId}})
+        console.log(data);
         return data;
 
       } catch (error) {
@@ -58,6 +58,7 @@ export const twitterSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true 
         state.isError = false
+        state.spaces = payload.data
       },
       [getSpaces.rejected]: (state, { payload }) => {
         state.isLoading = false

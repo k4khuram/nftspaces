@@ -13,7 +13,7 @@ class Past extends Component {
                 <h2 className="heading-h2">🎧 PAST</h2>
                 <div className="space-cards">
                     {this.props.spaces.map((obj, i) =>
-                        <div className="card mb-3">
+                        <div className="card mb-3" key={i}>
                             <div className="row align-items-center g-0">
                                 <div className="col-3">
                                     <img src={obj.user ? obj.user.profile_image_url : '/images/panda-image.png'} className="img-fluid round-img" alt="Avatar" />

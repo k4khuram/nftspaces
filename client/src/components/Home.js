@@ -7,21 +7,22 @@ import Past from "./Past";
 import Popular from "./Popular";
 import Footer from "./Footer";
 import { marketCapsVolumes } from "../apis/graphAPI";
-import { getSpaces } from "../apis/twitterAPI";
 import ApexChart from './ApexChart';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userSelector } from "../features/user/userSlice"
+import { getSpaces, twitterSelector } from "../features/twitter/twitterSlice";
 
 const Home = () => {
     
+    const dispatch = useDispatch();
     const { userInfo } = useSelector(userSelector);
+    const { isLoading, isError, errMessage, isSuccess, spaces } = useSelector(twitterSelector)
     const [isChart, setIsChart] = useState(false);
     const [capsTotal, setCapsTotal] = useState(0);
     const [volumesTotal, setVolumesTotal] = useState(0);
     const [caps, setCaps] = useState([]);
     const [volumes, setVolumes] = useState([]);
     const [categories, setcategories] = useState([]);
-    const [spacesList, setSpacesList] = useState([]);
 
     useEffect(() => {
 
@@ -52,9 +53,8 @@ const Home = () => {
         // .then(response => console.log(response))
         // .catch(err => console.error(err));
 
-        getSpaces('NFT', 'all', userInfo).then(res => {
-            setSpacesList(res.data);
-        })
+        const filter = { query: '', state: 'all', userId: userInfo.id }
+        dispatch(getSpaces(filter));
     }, [])
 
     const convertCurrency = (labelValue) => {
@@ -122,21 +122,21 @@ const Home = () => {
                         <div className="container">
                             <div className="row">
 
-                                {spacesList.live &&
-                                    <LiveNow spaces={spacesList.live} />
+                                {spaces.live &&
+                                    <LiveNow spaces={spaces.live} />
                                 }
 
                                 <div className="col-lg-8 col-md-12">
                                     <div className="right-area-main">
                                         <div className="row g-3">
                                             <div className="col-md-6">
-                                                {spacesList.trending &&
-                                                    <Hot spaces={spacesList.trending} />
+                                                {spaces.trending &&
+                                                    <Hot spaces={spaces.trending} />
                                                 }
                                             </div>
                                             <div className="col-md-6">
-                                                {spacesList.scheduled &&
-                                                    <Upcoming spaces={spacesList.scheduled}></Upcoming>
+                                                {spaces.scheduled &&
+                                                    <Upcoming spaces={spaces.scheduled}></Upcoming>
                                                 }
                                             </div>
                                         </div>
@@ -152,13 +152,13 @@ const Home = () => {
 
                                         <div className="row g-3 mt-2">
                                             <div className="col-md-6">
-                                                {spacesList.past &&
-                                                    <Past spaces={spacesList.past}></Past>
+                                                {spaces.past &&
+                                                    <Past spaces={spaces.past}></Past>
                                                 }
                                             </div>
                                             <div className="col-md-6">
-                                                {spacesList.popular &&
-                                                    <Popular spaces={spacesList.popular} />
+                                                {spaces.popular &&
+                                                    <Popular spaces={spaces.popular} />
                                                 }
                                             </div>
                                         </div>
