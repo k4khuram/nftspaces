@@ -19,29 +19,31 @@ const UpcomingListing = (props) => {
     return (
         <>
         {!hide &&
-            <div className="card mb-3" key={props.i}>
-                <div className="row align-items-center g-0">
-                    <div className="col-3">
-                        <img src={props.obj.user ? props.obj.user.profile_image_url : '/images/panda-image.png'} className="img-fluid round-img" alt="Avatar" />
-                    </div>
-                    <div className="col-9">
-                        <div className="card-body">
-                        <a href="#" className="card-title">{props.obj.title}</a>
-                            <div className="row align-items-center g-0">
-                                <div className="col-8">
-                                    <p className="card-text">
-                                    <Moment format="ddd, MMM D hh:mm A">{props.obj.scheduled_start}</Moment>
-                                    </p>
-                                    <p className="card-text">Host: <a href="#">{props.obj.user ? props.obj.user.name : '-'}</a></p>
+            <a href={props.obj.user.url} target="_blank">
+                <div className="card mb-3" key={props.i}>
+                    <div className="row align-items-center g-0">
+                        <div className="col-3">
+                            <img src={props.obj.user ? props.obj.user.profile_image_url : '/images/panda-image.png'} className="img-fluid round-img" alt="Avatar" />
+                        </div>
+                        <div className="col-9">
+                            <div className="card-body">
+                            <a href="#" className="card-title">{props.obj.title}</a>
+                                <div className="row align-items-center g-0">
+                                    <div className="col-8">
+                                        <p className="card-text">
+                                        <Moment format="ddd, MMM D hh:mm A">{props.obj.scheduled_start}</Moment>
+                                        </p>
+                                        <p className="card-text">Host: <a href="#">{props.obj.user ? props.obj.user.name : '-'}</a></p>
+                                    </div>
+                                <div className="col-4 text-end">
+                                <button className="btn btn-secondary" onClick={() => handleRemind(props.obj._id)}>Remind</button>
                                 </div>
-                            <div className="col-4 text-end">
-                            <button className="btn btn-secondary" onClick={() => handleRemind(props.obj._id)}>Remind</button>
-                            </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         }
         </>
     );

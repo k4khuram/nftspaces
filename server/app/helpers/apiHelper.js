@@ -48,51 +48,53 @@ exports.fetchSpaces = async (keyword) => {
     console.log(keyword);
     console.log((data.data === undefined) ? 'no data' : data.data.length);
 
-    if(data.data !== undefined && data.data.length > 0){
-      var promise = [];
-      data.data.map((obj) => {
+    return data.data;
 
-        if(obj.title !== ''){
+    // if(data.data !== undefined && data.data.length > 0){
+    //   var promise = [];
+      // data.data.map((obj) => {
 
-          const user = data.includes.users.filter(o => {
-            if(o.id == obj.creator_id){
-              return o;
-            }
-          })
+      //   if(obj.title !== ''){
 
-          if(Object.keys(user).length > 0){
-            const spaceObj = {
-              keyword: keyword,
-              space_id: obj.id,
-              participant_count: obj.participant_count,
-              title: obj.title,
-              state: obj.state,
-              started_at: obj.started_at,
-              scheduled_start: obj.scheduled_start,
-              user: user[0]
-            };
+      //     const user = data.includes.users.filter(o => {
+      //       if(o.id == obj.creator_id){
+      //         return o;
+      //       }
+      //     })
 
-            var response = saveSpaces(obj.id, spaceObj);
-            promise.push(response);
+      //     if(Object.keys(user).length > 0){
+      //       const spaceObj = {
+      //         keyword: keyword,
+      //         space_id: obj.id,
+      //         participant_count: obj.participant_count,
+      //         title: obj.title,
+      //         state: obj.state,
+      //         started_at: obj.started_at,
+      //         scheduled_start: obj.scheduled_start,
+      //         user: user[0]
+      //       };
+
+      //       var response = saveSpaces(obj.id, spaceObj);
+      //       promise.push(response);
             
-            Promise.all(promise)
-            .then((promise) => {
-              result = 'Saved successfully';
-            }).catch((error) => {
-              console.log('An error occured!');
-              console.error(error);
-            });
-          }
-        }
-      })
+      //       Promise.all(promise)
+      //       .then((promise) => {
+      //         result = 'Saved successfully';
+      //       }).catch((error) => {
+      //         console.log('An error occured!');
+      //         console.error(error);
+      //       });
+      //     }
+      //   }
+      // })
 
-      return result;
+    //   return result;
 
-    } else{
-      result = 'No spaces found';
+    // } else{
+    //   result = 'No spaces found';
 
-      return result;
-    }
+    //   return result;
+    // }
   });
 
 }

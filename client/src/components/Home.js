@@ -53,8 +53,8 @@ const Home = () => {
         // .then(response => console.log(response))
         // .catch(err => console.error(err));
 
-        const filter = { query: '', state: 'all', userId: userInfo.id }
-        dispatch(getSpaces(filter));
+        // const filter = { query: '', state: 'all', userId: userInfo.id }
+        // dispatch(getSpaces(filter));
     }, [])
 
     const convertCurrency = (labelValue) => {

@@ -3,6 +3,7 @@ const apiHelper = require('../helpers/apiHelper');
 const User = require("../models/User");
 const Space = require("../models/Space");
 const SpaceRemind = require("../models/SpaceRemind");
+const axios = require("axios");
 
 const { TwitterApi } = require('twitter-api-v2');
 const TWITTER_URL = process.env.TWITTER_URL;
@@ -78,94 +79,156 @@ exports.remind = async(req,res) => {
 }
 
 exports.getSpaces = async(req,res) => {
-  try{
-    var search = (req.query.q !== undefined && req.query.q !== '') ? { $or: [{ title: { $regex: req.query.q, $options: "i" }},{ keyword: { $regex: req.query.q, $options: "i" }},{ 'user.description': { $regex: req.query.q, $options: "i" }},{ 'user.name': { $regex: req.query.q, $options: "i" }},{ 'user.username': { $regex: req.query.q, $options: "i" }}]} : {};
-    var data = {};
-    Space.aggregate([
-      {$match: search},
-      {
-      "$lookup": {
-        from: "space_reminders",
-        let: {
-          id: "$_id",
-        },
-        pipeline: [
-          {
-            $match: {
-              $expr:{
-                $and:[
-                     {$eq: ["$user_id",mongoose.Types.ObjectId(req.query.user_id)]},
-                     {
-                          $eq:[
-                               "$$id", //localField variable it can be used only in $expr
-                               "$space_id" //foreignField 
-                          ]
-                     }
-                ]
-           }
-            }
-          }
-        ],
-        as: "space"
-      }
-    }]).unwind({
-      path: "$space",
-      preserveNullAndEmptyArrays: true
-    }).then(resp => {
 
-      // console.log(resp);
+  var config = {
+    method: 'get',
+    url: TWITTER_URL+`spaces/search?state=all&query=${req.query.q}&space.fields=title,creator_id,started_at,scheduled_start,participant_count&topic.fields=description&expansions=creator_id&user.fields=created_at,profile_image_url,description,url`,
+    headers: { 
+      'Authorization': `Bearer ${TWITTER_BEARER_TOKEN}`
+    }
+  };
 
-      if(resp){
+  axios(config)
+  .then(function (response) {
 
-        const live = [];
-        const scheduled = [];
-        const trending = [];
-        const past = [];
-        const popular = [];
+    const resp = response.data;
 
-        resp.map((obj) => {
-          if(obj.state == 'live'){
-            live.push(obj);
-          }
-          else if(obj.state == 'scheduled' && obj.space !== undefined){
-            trending.push(obj);
-          }
-          else if(obj.state == 'scheduled' && obj.type === 'PAST'){
-            past.push(obj);
-          }
-          else if(obj.state == 'scheduled' && obj.type === 'POPULAR'){
-            popular.push(obj);
-          }
-          else if(obj.state == 'scheduled'){
-            scheduled.push(obj);
+    var liveSpaces = [];
+    var scheduledSpaces = [];
+
+    console.log(resp.data.length);
+    
+    resp.data.map((obj) => {
+
+      if(obj.title !== ''){
+
+        const user = resp.includes.users.filter(o => {
+          if(o.id == obj.creator_id){
+            return o;
           }
         })
-        data['live'] = live;
-        data['scheduled'] = scheduled;
-        data['trending'] = trending;
-        data['past'] = past;
-        data['popular'] = popular;
 
-        // m = resp.map((obj) => {
-        //   if(obj.state == 'scheduled'){
-        //     return obj;
-        //   }
-        // })
-        // data['scheduled'] = m;
+        if(Object.keys(user).length > 0){
+          const spaceObj = {
+            keyword: req.query.q,
+            space_id: obj.id,
+            participant_count: obj.participant_count,
+            title: obj.title,
+            state: obj.state,
+            started_at: obj.started_at,
+            scheduled_start: obj.scheduled_start,
+            user: user[0]
+          };
+
+          if(obj.state == 'live'){
+            liveSpaces.push(spaceObj);
+          }
+          else if(obj.state == 'scheduled'){
+            scheduledSpaces.push(spaceObj);
+          }
+        }
       }
-
-      res.status(200).json(apiHelper.getSuccessResponse(data, "Spaces list"));
     })
 
-      // const client = new TwitterApi(TWITTER_BEARER_TOKEN);   
-      // const { data: spaces } = await client.v2.searchSpaces({ query: req.query.q, state: req.query.state,"space.fields":["title","creator_id"],"topic.fields":["description"],"expansions":"creator_id","user.fields":["created_at","profile_image_url"] })
-      // console.log(spaces);
-      // res.status(200).json({spaces:spaces});
+    var data = {};
+    data['live'] = liveSpaces;
+    data['scheduled'] = scheduledSpaces;
 
-  }catch(err){
-      res.status(401).json({errMessage:err.message});
-  }
-      
+    res.status(200).json(apiHelper.getSuccessResponse(data, 'Saved successfully'))
+    
+  }).catch((error) => {
+    console.log('An error occured!');
+    console.error(error);
+  });
+
+
+  // try{
+  //   var search = (req.query.q !== undefined && req.query.q !== '') ? { $or: [{ title: { $regex: req.query.q, $options: "i" }},{ keyword: { $regex: req.query.q, $options: "i" }},{ 'user.description': { $regex: req.query.q, $options: "i" }},{ 'user.name': { $regex: req.query.q, $options: "i" }},{ 'user.username': { $regex: req.query.q, $options: "i" }}]} : {};
+  //   var data = {};
+  //   Space.aggregate([
+  //     {$match: search},
+  //     {
+  //     "$lookup": {
+  //       from: "space_reminders",
+  //       let: {
+  //         id: "$_id",
+  //       },
+  //       pipeline: [
+  //         {
+  //           $match: {
+  //             $expr:{
+  //               $and:[
+  //                    {$eq: ["$user_id",mongoose.Types.ObjectId(req.query.user_id)]},
+  //                    {
+  //                         $eq:[
+  //                              "$$id", //localField variable it can be used only in $expr
+  //                              "$space_id" //foreignField 
+  //                         ]
+  //                    }
+  //               ]
+  //          }
+  //           }
+  //         }
+  //       ],
+  //       as: "space"
+  //     }
+  //   }]).unwind({
+  //     path: "$space",
+  //     preserveNullAndEmptyArrays: true
+  //   }).then(resp => {
+
+  //     // console.log(resp);
+
+  //     if(resp){
+
+  //       const live = [];
+  //       const scheduled = [];
+  //       const trending = [];
+  //       const past = [];
+  //       const popular = [];
+
+  //       resp.map((obj) => {
+  //         if(obj.state == 'live'){
+  //           live.push(obj);
+  //         }
+  //         else if(obj.state == 'scheduled' && obj.space !== undefined){
+  //           trending.push(obj);
+  //         }
+  //         else if(obj.state == 'scheduled' && obj.type === 'PAST'){
+  //           past.push(obj);
+  //         }
+  //         else if(obj.state == 'scheduled' && obj.type === 'POPULAR'){
+  //           popular.push(obj);
+  //         }
+  //         else if(obj.state == 'scheduled'){
+  //           scheduled.push(obj);
+  //         }
+  //       })
+  //       data['live'] = live;
+  //       data['scheduled'] = scheduled;
+  //       data['trending'] = trending;
+  //       data['past'] = past;
+  //       data['popular'] = popular;
+
+  //       // m = resp.map((obj) => {
+  //       //   if(obj.state == 'scheduled'){
+  //       //     return obj;
+  //       //   }
+  //       // })
+  //       // data['scheduled'] = m;
+  //     }
+
+  //     res.status(200).json(apiHelper.getSuccessResponse(data, "Spaces list"));
+  //   })
+
+  //     // const client = new TwitterApi(TWITTER_BEARER_TOKEN);   
+  //     // const { data: spaces } = await client.v2.searchSpaces({ query: req.query.q, state: req.query.state,"space.fields":["title","creator_id"],"topic.fields":["description"],"expansions":"creator_id","user.fields":["created_at","profile_image_url"] })
+  //     // console.log(spaces);
+  //     // res.status(200).json({spaces:spaces});
+
+  // }catch(err){
+  //     res.status(401).json({errMessage:err.message});
+  // }
 }
 
 exports.popularSpaces = async(req,res) => {
